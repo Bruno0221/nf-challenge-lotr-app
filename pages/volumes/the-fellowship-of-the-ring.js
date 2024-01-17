@@ -1,13 +1,18 @@
 import { volumes } from "@/resources/lib/data";
 import Link from "next/link";
 import Image from "next/image";
-import Navigation from "./Navigation";
+import Navigation from "../../components/Navigation";
 import Cover from "../../resources/public/images/the-fellowship-of-the-ring.png";
 
 export default function Fellowship() {
   const book = volumes.find(
     ({ slug }) => slug === "the-fellowship-of-the-ring"
   );
+  const coverStyle = {
+    display: "block",
+    margin: "5rem",
+    border: "1px solid #fff",
+  };
 
   return (
     <>
@@ -24,7 +29,13 @@ export default function Fellowship() {
           );
         })}
       </ul>
-      <Image height={230} width={140} src={Cover} alt="book-cover" />
+      <Image
+        style={coverStyle}
+        height={230}
+        width={140}
+        src={Cover}
+        alt={book.title}
+      />
 
       <Navigation book={book} />
     </>

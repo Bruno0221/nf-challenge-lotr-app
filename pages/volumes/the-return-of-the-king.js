@@ -1,6 +1,6 @@
 import { volumes } from "@/resources/lib/data";
 import Link from "next/link";
-import Navigation from "./Navigation";
+import Navigation from "../../components/Navigation";
 import Cover from "../../resources/public/images/the-return-of-the-king.png";
 import Image from "next/image";
 
