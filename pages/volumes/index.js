@@ -1,7 +1,19 @@
 import Link from "next/link";
 import { introduction, volumes } from "../../resources/lib/data.js";
+import { useRouter } from "next/router.js";
 
 export default function Volumes() {
+  const router = useRouter();
+
+  function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function routeToRandomBook(array) {
+    const randomBook = getRandomElement(array);
+    router.push(`volumes/${randomBook.slug}`);
+  }
+
   return (
     <>
       <Link href="/">← Back Home</Link>
@@ -17,6 +29,9 @@ export default function Volumes() {
           );
         })}
       </ul>
+      <button type="button" onClick={() => routeToRandomBook(volumes)}>
+        Get random book
+      </button>
     </>
   );
 }

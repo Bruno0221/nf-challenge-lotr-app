@@ -2,20 +2,24 @@ import { volumes } from "@/resources/lib/data";
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "../../components/Navigation";
-import Cover from "../../resources/public/images/the-fellowship-of-the-ring.png";
+import { useRouter } from "next/router";
+import Head from "next/head";
 
-export default function Fellowship() {
-  const book = volumes.find(
-    ({ slug }) => slug === "the-fellowship-of-the-ring"
-  );
+export default function Book() {
+  const router = useRouter();
+  const { slug } = router.query;
+
+  const book = volumes.find((volume) => volume.slug === slug);
+
   const coverStyle = {
     display: "block",
-    margin: "5rem",
-    border: "1px solid #fff",
   };
 
   return (
     <>
+      <Head>
+        <title>{book.title}</title>
+      </Head>
       <Link href="/volumes">← All Volumes</Link>
       <h1>{book.title}</h1>
       <p>{book.description}</p>
@@ -33,7 +37,7 @@ export default function Fellowship() {
         style={coverStyle}
         height={230}
         width={140}
-        src={Cover}
+        src={book.cover}
         alt={book.title}
       />
 
