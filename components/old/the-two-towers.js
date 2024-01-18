@@ -1,11 +1,11 @@
 import { volumes } from "@/resources/lib/data";
 import Link from "next/link";
-import Navigation from "../../components/Navigation";
-import Cover from "../../resources/public/images/the-return-of-the-king.png";
+import Navigation from "../Navigation";
+import Cover from "../../resources/public/images/the-two-towers.png";
 import Image from "next/image";
 
-export default function King() {
-  const book = volumes.find(({ slug }) => slug === "the-return-of-the-king");
+export default function TwoTowers() {
+  const book = volumes.find(({ slug }) => slug === "the-two-towers");
   const index = volumes.indexOf(book);
 
   return (

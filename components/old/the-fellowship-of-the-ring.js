@@ -1,12 +1,17 @@
 import { volumes } from "@/resources/lib/data";
 import Link from "next/link";
-import Navigation from "../../components/Navigation";
-import Cover from "../../resources/public/images/the-two-towers.png";
 import Image from "next/image";
+import Navigation from "../Navigation";
 
-export default function TwoTowers() {
-  const book = volumes.find(({ slug }) => slug === "the-two-towers");
-  const index = volumes.indexOf(book);
+export default function Fellowship() {
+  const book = volumes.find(
+    ({ slug }) => slug === "the-fellowship-of-the-ring"
+  );
+  const coverStyle = {
+    display: "block",
+    margin: "5rem",
+    border: "1px solid #fff",
+  };
 
   return (
     <>
@@ -23,7 +28,14 @@ export default function TwoTowers() {
           );
         })}
       </ul>
-      <Image height={230} width={140} src={Cover} alt="book-cover" />
+      <Image
+        style={coverStyle}
+        height={230}
+        width={140}
+        src={book.cover}
+        alt={book.title}
+      />
+
       <Navigation book={book} />
     </>
   );

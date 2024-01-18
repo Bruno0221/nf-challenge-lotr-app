@@ -1,18 +1,12 @@
 import { volumes } from "@/resources/lib/data";
 import Link from "next/link";
+import Navigation from "../Navigation";
+import Cover from "../../resources/public/images/the-return-of-the-king.png";
 import Image from "next/image";
-import Navigation from "../../components/Navigation";
-import Cover from "../../resources/public/images/the-fellowship-of-the-ring.png";
 
-export default function Fellowship() {
-  const book = volumes.find(
-    ({ slug }) => slug === "the-fellowship-of-the-ring"
-  );
-  const coverStyle = {
-    display: "block",
-    margin: "5rem",
-    border: "1px solid #fff",
-  };
+export default function King() {
+  const book = volumes.find(({ slug }) => slug === "the-return-of-the-king");
+  const index = volumes.indexOf(book);
 
   return (
     <>
@@ -29,14 +23,7 @@ export default function Fellowship() {
           );
         })}
       </ul>
-      <Image
-        style={coverStyle}
-        height={230}
-        width={140}
-        src={Cover}
-        alt={book.title}
-      />
-
+      <Image height={230} width={140} src={Cover} alt="book-cover" />
       <Navigation book={book} />
     </>
   );
