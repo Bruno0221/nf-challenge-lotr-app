@@ -20,8 +20,13 @@ export default function Book() {
 
   const book = volumes.find((volume) => volume.slug === slug);
 
+  const volumeIndex = volumes.findIndex((volume) => volume.slug === slug);
+  const volume = volumes[volumeIndex];
+  const previousVolume = volumes[volumeIndex - 1];
+  const nextVolume = volumes[volumeIndex + 1];
+
   if (!book) {
-    return <h1>PROBLEM</h1>;
+    return null;
   }
 
   const VolumeDetails = styled.div`
@@ -125,7 +130,11 @@ export default function Book() {
             alt={book.title}
           />
         </VolumeDetails>
-        <Navigation book={book} />
+        <Navigation
+          previousVolume={previousVolume}
+          nextVolume={nextVolume}
+          book={book}
+        />
       </StyledAllVolumesPage>
     </>
   );

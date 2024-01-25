@@ -67,56 +67,47 @@ const VolumeTitle = styled(Link)`
   width: fit-content;
 `;
 
-export default function Navigation({ book }) {
-  const index = volumes.indexOf(book);
-
-  if (!index) {
-    return <h1>PROBLEM</h1>;
-  }
-
+export default function Navigation({ book, previousVolume, nextVolume }) {
   return (
     <>
       <VolumeNavigation>
-        <Nav>
-          {index > 0 && (
-            <>
-              <Icon
-                src="/images/arrow-left.png"
-                alt="icon prev"
-                width={24}
-                height={24}
-              />
-              <Text>
-                <TextWrapper4 href={`/volumes/${volumes[index - 1].slug}`}>
-                  Previous Volume
-                </TextWrapper4>
-                <VolumeTitle href={`/volumes/${volumes[index - 1].slug}`}>
-                  {volumes[index - 1].title}
-                </VolumeTitle>
-              </Text>
-            </>
-          )}
-        </Nav>
-        <Nav style={{ justifyContent: "flex-end" }}>
-          {index < volumes.length - 1 && (
-            <>
-              <Text>
-                <TextWrapper4 href={`/volumes/${volumes[index + 1].slug}`}>
-                  Next Volume
-                </TextWrapper4>
-                <VolumeTitle href={`/volumes/${volumes[index - 1].slug}`}>
-                  {volumes[index + 1].title}
-                </VolumeTitle>
-              </Text>
-              <Icon
-                src="/images/arrow-right.png"
-                alt="icon prev"
-                width={24}
-                height={24}
-              />
-            </>
-          )}
-        </Nav>
+        {previousVolume ? (
+          <Nav>
+            <Icon
+              src="/images/arrow-left.png"
+              alt="icon prev"
+              width={24}
+              height={24}
+            />
+            <Text>
+              <TextWrapper4 href={`/volumes/${previousVolume.slug}`}>
+                Previous Volume
+              </TextWrapper4>
+              <VolumeTitle href={`/volumes/${previousVolume.slug}`}>
+                {previousVolume.title}
+              </VolumeTitle>
+            </Text>
+          </Nav>
+        ) : null}
+
+        {nextVolume ? (
+          <Nav style={{ justifyContent: "flex-end" }}>
+            <Text>
+              <TextWrapper4 href={`/volumes/${nextVolume.slug}`}>
+                Next Volume
+              </TextWrapper4>
+              <VolumeTitle href={`/volumes/${nextVolume.slug}`}>
+                {nextVolume.title}
+              </VolumeTitle>
+            </Text>
+            <Icon
+              src="/images/arrow-right.png"
+              alt="icon prev"
+              width={24}
+              height={24}
+            />
+          </Nav>
+        ) : null}
       </VolumeNavigation>
     </>
   );
